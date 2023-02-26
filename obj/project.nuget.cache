@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "P4+qsqELFEk/t+CSfJn/vS7vx5yUn2kRpqgwV/eCYyIGe3GvcX3PaJdBOIv+Yus4dVILwcMch927u+C9UpmElg==",
+  "success": true,
+  "projectFilePath": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ildar\\.nuget\\packages\\libvlcsharp\\3.6.6\\libvlcsharp.3.6.6.nupkg.sha512",
+    "C:\\Users\\ildar\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\ildar\\.nuget\\packages\\taglibsharp\\2.2.0\\taglibsharp.2.2.0.nupkg.sha512",
+    "C:\\Users\\ildar\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.14\\microsoft.netcore.app.runtime.win-x64.6.0.14.nupkg.sha512",
+    "C:\\Users\\ildar\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.14\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.14.nupkg.sha512",
+    "C:\\Users\\ildar\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.14\\microsoft.aspnetcore.app.runtime.win-x64.6.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
