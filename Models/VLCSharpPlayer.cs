@@ -1,8 +1,10 @@
 using ShareInstances;
-using ShareInstances.PlayerResources;
-using ShareInstances.PlayerResources.Interfaces;
-using LibVLCSharp.Shared;
+using ShareInstances.Instances;
+using ShareInstances.Instances.Interfaces;
+using ShareInstances.StoreSpace;
+using ShareInstances.Filer;
 
+using LibVLCSharp.Shared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +16,10 @@ namespace IldMusic.VLCSharp
         #region VLCSharp Instances
         private static readonly LibVLC _vlc = new LibVLC(); 
         private static MediaPlayer _mediaPlayer = new(_vlc);
+        #endregion
+
+        #region Store Instance
+        public Store StoreInstance {get; private set;}
         #endregion
 
         #region Player Indentety 
@@ -74,6 +80,12 @@ namespace IldMusic.VLCSharp
 
 
         #region Player Inits
+
+        public void DetermineStore(ref Store store)
+        {
+            StoreInstance = store;
+        }
+
         public void SetNotifier(Action callback)
         {
             notifyAction = callback;
@@ -89,7 +101,7 @@ namespace IldMusic.VLCSharp
 
             if (CurrentEntity is Playlist playlist)
             {    
-                CurrentPlaylistPool = playlist.Tracks;
+                CurrentPlaylistPool = StoreInstance.GetTracksById(playlist.Tracks);
                 IsTrackPlaylist = false;
                 IsSwipe = true;
             }
@@ -123,6 +135,27 @@ namespace IldMusic.VLCSharp
             }
         }
         
+
+        public void SetRoad(MusicFile musicFile)
+        {
+            CurrentEntity = musicFile.MusicFileConvertTrack();
+            PlaylistPoint = 0;
+            IsEmpty = false;
+            SetMedia();
+        }
+
+        public void SetRoad(IEnumerable<MusicFile> musicFiles)
+        {
+            CurrentPlaylistPool = musicFiles.MusicFileConvertPlaylist().Temps;
+            PlaylistPoint = 0;
+            CurrentEntity = CurrentPlaylistPool[PlaylistPoint];
+            IsTrackPlaylist = false;
+            IsSwipe = true;
+            SetMedia();
+        }
+
+
+
         private void CleanCurrentState()
         {
             PlayerState = false;

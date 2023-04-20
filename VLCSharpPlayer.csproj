@@ -14,5 +14,6 @@
     	<Private>false</Private>
     	<ExcludeAssets>runtime</ExcludeAssets>
     </ProjectReference>
+    <ProjectReference Include="..\Ild-Music.ShareInstances\ShareInstances.csproj" />
   </ItemGroup>
 </Project>

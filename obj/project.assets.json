@@ -23,64 +23,9 @@
           }
         },
         "runtime": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
-        }
-      },
-      "TagLibSharp/2.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/TagLibSharp.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {
-            "related": ".pdb"
-          }
-        }
-      },
-      "ShareInstances/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
-          "TagLibSharp": "2.2.0"
-        },
-        "compile": {
-          "bin/placeholder/ShareInstances.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/_._": {}
-        }
-      }
-    },
-    "net6.0/win-x64": {
-      "LibVLCSharp/3.6.6": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/LibVLCSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/LibVLCSharp.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Newtonsoft.Json/13.0.1": {
-        "type": "package",
-        "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
         }
       },
       "TagLibSharp/2.2.0": {
@@ -91,7 +36,7 @@
           }
         },
         "runtime": {
-          "lib/netstandard2.0/_._": {
+          "lib/netstandard2.0/TagLibSharp.dll": {
             "related": ".pdb"
           }
         }
@@ -107,7 +52,7 @@
           "bin/placeholder/ShareInstances.dll": {}
         },
         "runtime": {
-          "bin/placeholder/_._": {}
+          "bin/placeholder/ShareInstances.dll": {}
         }
       }
     }
@@ -206,8 +151,8 @@
     },
     "ShareInstances/1.0.0": {
       "type": "project",
-      "path": "../ShareInstances/ShareInstances.csproj",
-      "msbuildProject": "../ShareInstances/ShareInstances.csproj"
+      "path": "../Ild-Music.ShareInstances/ShareInstances.csproj",
+      "msbuildProject": "../Ild-Music.ShareInstances/ShareInstances.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -217,19 +162,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ildar\\.nuget\\packages\\": {}
+    "/home/ggghosthat/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj",
+      "projectUniqueName": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
       "projectName": "VLCSharpPlayer",
-      "projectPath": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj",
-      "packagesPath": "C:\\Users\\ildar\\.nuget\\packages\\",
-      "outputPath": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\obj\\",
+      "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
+      "packagesPath": "/home/ggghosthat/.nuget/packages/",
+      "outputPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ildar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/ggghosthat/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -241,9 +186,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj": {
-              "projectPath": "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj",
-              "excludeAssets": "runtime"
+            "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj": {
+              "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj"
             }
           }
         }
@@ -274,31 +218,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[6.0.14, 6.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[6.0.14, 6.0.14]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[6.0.14, 6.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
+        "runtimeIdentifierGraphPath": "/home/ggghosthat/dotnet/sdk/6.0.405/RuntimeIdentifierGraph.json"
       }
     }
   }

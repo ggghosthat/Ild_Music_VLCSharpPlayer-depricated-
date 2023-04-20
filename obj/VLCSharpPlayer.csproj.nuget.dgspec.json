@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj": {}
+    "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj": {}
   },
   "projects": {
-    "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj": {
+    "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj",
+        "projectUniqueName": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj",
         "projectName": "ShareInstances",
-        "projectPath": "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj",
-        "packagesPath": "C:\\Users\\ildar\\.nuget\\packages\\",
-        "outputPath": "E:\\ild_music\\Ild-Music\\ShareInstances\\obj\\",
+        "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj",
+        "packagesPath": "/home/ggghosthat/.nuget/packages/",
+        "outputPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ildar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/ggghosthat/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -58,45 +58,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
+          "runtimeIdentifierGraphPath": "/home/ggghosthat/dotnet/sdk/6.0.405/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj": {
+    "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj",
+        "projectUniqueName": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
         "projectName": "VLCSharpPlayer",
-        "projectPath": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\VLCSharpPlayer.csproj",
-        "packagesPath": "C:\\Users\\ildar\\.nuget\\packages\\",
-        "outputPath": "E:\\ild_music\\Ild-Music\\VLCSharpPlayer\\obj\\",
+        "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
+        "packagesPath": "/home/ggghosthat/.nuget/packages/",
+        "outputPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ildar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/ggghosthat/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -108,9 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj": {
-                "projectPath": "E:\\ild_music\\Ild-Music\\ShareInstances\\ShareInstances.csproj",
-                "excludeAssets": "runtime"
+              "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj": {
+                "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj"
               }
             }
           }
@@ -141,31 +121,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[6.0.14, 6.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
+          "runtimeIdentifierGraphPath": "/home/ggghosthat/dotnet/sdk/6.0.405/RuntimeIdentifierGraph.json"
         }
       }
     }
