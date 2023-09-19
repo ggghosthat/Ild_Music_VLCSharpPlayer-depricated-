@@ -2,7 +2,23 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "LibVLCSharp/3.6.6": {
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LibVLCSharp/3.7.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/LibVLCSharp.dll": {
@@ -15,15 +31,24 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -45,7 +70,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
+          "AutoMapper": "12.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "TagLibSharp": "2.2.0"
         },
         "compile": {
@@ -58,10 +84,25 @@
     }
   },
   "libraries": {
-    "LibVLCSharp/3.6.6": {
-      "sha512": "FVFPaVGcckbva3fEzc9+VNP3zD4KZ4eoiCEkfBe5+/BgJLDbnV9Nk9TlwqqrUxlelGL2q4gXGhXAm+gU0yDFYQ==",
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
       "type": "package",
-      "path": "libvlcsharp/3.6.6",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "LibVLCSharp/3.7.0": {
+      "sha512": "N9NV+BamKr+1YiRktX9JroE4m9C+pEszUNW4qa3A5mychhCWBvvoDolZKWk2yxhZvHewgaXXahBcw5ivCXjKYA==",
+      "type": "package",
+      "path": "libvlcsharp/3.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -77,14 +118,15 @@
         "lib/net6.0-android31.0/LibVLCSharp.Android.AWindow.dll",
         "lib/net6.0-android31.0/LibVLCSharp.dll",
         "lib/net6.0-android31.0/LibVLCSharp.xml",
-        "lib/net6.0-ios15.2/LibVLCSharp.dll",
-        "lib/net6.0-ios15.2/LibVLCSharp.xml",
-        "lib/net6.0-macos12.1/LibVLCSharp.dll",
-        "lib/net6.0-macos12.1/LibVLCSharp.xml",
-        "lib/net6.0-tvos15.2/LibVLCSharp.dll",
-        "lib/net6.0-tvos15.2/LibVLCSharp.xml",
-        "lib/net6.0-windows7.0/LibVLCSharp.dll",
-        "lib/net6.0-windows7.0/LibVLCSharp.xml",
+        "lib/net6.0-ios16.1/LibVLCSharp.dll",
+        "lib/net6.0-ios16.1/LibVLCSharp.xml",
+        "lib/net6.0-macos13.0/LibVLCSharp.dll",
+        "lib/net6.0-macos13.0/LibVLCSharp.xml",
+        "lib/net6.0-tvos16.1/LibVLCSharp.dll",
+        "lib/net6.0-tvos16.1/LibVLCSharp.xml",
+        "lib/net6.0-windows10.0.17763/LibVLCSharp.dll",
+        "lib/net6.0-windows10.0.17763/LibVLCSharp.pri",
+        "lib/net6.0-windows10.0.17763/LibVLCSharp.xml",
         "lib/net6.0/LibVLCSharp.dll",
         "lib/net6.0/LibVLCSharp.xml",
         "lib/netstandard1.1/LibVLCSharp.dll",
@@ -101,18 +143,88 @@
         "lib/xamarinios10/LibVLCSharp.xml",
         "lib/xamarinmac20/LibVLCSharp.dll",
         "lib/xamarinmac20/LibVLCSharp.xml",
-        "libvlcsharp.3.6.6.nupkg.sha512",
+        "libvlcsharp.3.7.0.nupkg.sha512",
         "libvlcsharp.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.1": {
-      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.1",
+      "path": "microsoft.csharp/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/Microsoft.CSharp.dll",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.3/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/uap10.0.16299/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "microsoft.csharp.4.7.0.nupkg.sha512",
+        "microsoft.csharp.nuspec",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/Microsoft.CSharp.dll",
+        "ref/netcore50/Microsoft.CSharp.xml",
+        "ref/netcore50/de/Microsoft.CSharp.xml",
+        "ref/netcore50/es/Microsoft.CSharp.xml",
+        "ref/netcore50/fr/Microsoft.CSharp.xml",
+        "ref/netcore50/it/Microsoft.CSharp.xml",
+        "ref/netcore50/ja/Microsoft.CSharp.xml",
+        "ref/netcore50/ko/Microsoft.CSharp.xml",
+        "ref/netcore50/ru/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hans/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hant/Microsoft.CSharp.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/Microsoft.CSharp.dll",
+        "ref/netstandard1.0/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/de/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/es/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/fr/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/it/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ja/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ko/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ru/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hans/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hant/Microsoft.CSharp.xml",
+        "ref/netstandard2.0/Microsoft.CSharp.dll",
+        "ref/netstandard2.0/Microsoft.CSharp.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/uap10.0.16299/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -121,13 +233,15 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -157,24 +271,24 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "LibVLCSharp >= 3.6.6",
+      "LibVLCSharp >= 3.7.0",
       "ShareInstances >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "/home/ggghosthat/.nuget/packages/": {}
+    "/home/jake/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
+      "projectUniqueName": "/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
       "projectName": "VLCSharpPlayer",
-      "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
-      "packagesPath": "/home/ggghosthat/.nuget/packages/",
-      "outputPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/",
+      "projectPath": "/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
+      "packagesPath": "/home/jake/.nuget/packages/",
+      "outputPath": "/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/ggghosthat/.nuget/NuGet/NuGet.Config"
+        "/home/jake/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -186,8 +300,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj": {
-              "projectPath": "/home/ggghosthat/Ild-Music/dependencies/Ild-Music.ShareInstances/ShareInstances.csproj"
+            "/home/jake/repos/Ild_Music_repos/Ild-Music.ShareInstances/ShareInstances.csproj": {
+              "projectPath": "/home/jake/repos/Ild_Music_repos/Ild-Music.ShareInstances/ShareInstances.csproj"
             }
           }
         }
@@ -204,7 +318,7 @@
         "dependencies": {
           "LibVLCSharp": {
             "target": "Package",
-            "version": "[3.6.6, )"
+            "version": "[3.7.0, )"
           }
         },
         "imports": [
@@ -223,7 +337,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/ggghosthat/dotnet/sdk/6.0.405/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/jake/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
       }
     }
   }

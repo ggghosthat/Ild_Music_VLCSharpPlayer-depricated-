@@ -1,8 +1,5 @@
 using ShareInstances;
 using ShareInstances.Instances;
-using ShareInstances.Instances.Interfaces;
-using ShareInstances.StoreSpace;
-using ShareInstances.Filer;
 
 using LibVLCSharp.Shared;
 using System;
@@ -11,25 +8,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace IldMusic.VLCSharp
 {
-    public class VLCSharpPlayer : IPlayer
+    public class VLCSharpPlayer
     {
         #region VLCSharp Instances
         private static readonly LibVLC _vlc = new LibVLC(); 
         private static MediaPlayer _mediaPlayer = new(_vlc);
         #endregion
 
-        #region Store Instance
-        public Store StoreInstance {get; private set;}
-        #endregion
 
         #region Player Indentety 
         public Guid PlayerId => Guid.NewGuid();
-        public string PlayerName => "VLC Sharp Player";
+        public string PlayerName => "VLC Player";
         #endregion
 
         #region Player Resources
         public Media CurrentMedia {get; private set;}
-        public ICoreEntity CurrentEntity {get; private set;}
 
         public Track CurrentTrack {get; private set;}
         public int PlaylistPoint {get; private set;}
@@ -80,12 +73,7 @@ namespace IldMusic.VLCSharp
 
 
         #region Player Inits
-
-        public void DetermineStore(ref Store store)
-        {
-            StoreInstance = store;
-        }
-
+ 
         public void SetNotifier(Action callback)
         {
             notifyAction = callback;
@@ -108,7 +96,20 @@ namespace IldMusic.VLCSharp
 
             SetMedia();
         }
+
+        public void DropTrack(Track track)
+        {
+            CleanCurrentState();
+            
+            CurrentTrack = track;
+            IsEmpty = false;
+
+            SetMedia();
+        }
        
+        public void DropPlaylist(Playlist playlist, int index=0)
+        {}
+
         private void SetMedia()
         {
             if (CurrentMedia != null)
@@ -135,26 +136,6 @@ namespace IldMusic.VLCSharp
             }
         }
         
-
-        public void SetRoad(MusicFile musicFile)
-        {
-            CurrentEntity = musicFile.MusicFileConvertTrack();
-            PlaylistPoint = 0;
-            IsEmpty = false;
-            SetMedia();
-        }
-
-        public void SetRoad(IEnumerable<MusicFile> musicFiles)
-        {
-            CurrentPlaylistPool = musicFiles.MusicFileConvertPlaylist().Temps;
-            PlaylistPoint = 0;
-            CurrentEntity = CurrentPlaylistPool[PlaylistPoint];
-            IsTrackPlaylist = false;
-            IsSwipe = true;
-            SetMedia();
-        }
-
-
 
         private void CleanCurrentState()
         {

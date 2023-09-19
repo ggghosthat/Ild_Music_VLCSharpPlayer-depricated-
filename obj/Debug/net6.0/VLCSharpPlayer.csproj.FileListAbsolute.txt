@@ -18,3 +18,11 @@
 /home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.pdb
 /home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.genruntimeconfig.cache
 /home/ggghosthat/Ild-Music/dependencies/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/ref/VLCSharpPlayer.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.csproj.AssemblyReference.cache
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.GeneratedMSBuildEditorConfig.editorconfig
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.AssemblyInfoInputs.cache
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.AssemblyInfo.cs
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.csproj.CoreCompileInputs.cache
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/refint/VLCSharpPlayer.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.pdb
