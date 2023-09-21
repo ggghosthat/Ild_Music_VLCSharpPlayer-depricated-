@@ -8,33 +8,30 @@ using System.Threading.Tasks;
 namespace IldMusic.VlcPlayer;
 public class VlcPlayer : IPlayer
 {
+    private static readonly VlcPlayerService _playerService = new();
     public Guid PlayerId => Guid.NewGuid();
     public string PlayerName => "Vlc Player";
 
     public Track? CurrentTrack {get; private set;} = null;
     public Playlist? CurrentPlaylist { get; private set;} = null;
-    private Media currentMedia = null;
-
-    #region VLCSharp Instances
-    private static readonly LibVLC _vlc = new LibVLC(); 
-    private static MediaPlayer _mediaPlayer = new(_vlc);
-    #endregion
 
     #region Player Triggers
-    public bool IsSwipe {get; private set;} = false;
-    public bool IsEmpty {get; private set;} = true;
-    public bool ToggleState {get; private set;} = false;
+    public bool IsEmpty => _playerService.IsEmpty;
+    public bool ToggleState => _playerService.ToggleState;
     public int PlaylistPoint {get; private set;} = 0;
-    private bool IsPlaylist = false;
 
+
+    public bool IsSwipe {get; private set;} = false;
+    public bool IsPlaylistLoop {get; set;} = false;
+    private bool IsPlaylist = false;
     #endregion
 
     #region Time Presenters
-    public TimeSpan TotalTime {get; private set;}
+    public TimeSpan TotalTime => _playerService.TotalTime;
     public TimeSpan CurrentTime 
     {
-        get => TimeSpan.FromMilliseconds(_mediaPlayer.Time);
-        set => _mediaPlayer.SeekTo(value);
+        get => _playerService.CurrentTime;
+        set => _playerService.CurrentTime = value;
     }
     #endregion
 
@@ -43,18 +40,13 @@ public class VlcPlayer : IPlayer
     public float MinVolume {get; private set;} = 0;
     public float CurrentVolume 
     {
-        get => _mediaPlayer.Volume;
-        set => _mediaPlayer.Volume = (int)value;
+        get => _playerService.CurrentVolume;
+        set => _playerService.CurrentVolume = (int)value;
     }
-    #endregion
-
-    #region Actions
-    private Action notifyAction;
     #endregion
 
     #region Events
     private event Action ShuffleCollection;
-    public event Action TrackStarted;
     #endregion
 
     #region constructor
@@ -64,91 +56,42 @@ public class VlcPlayer : IPlayer
 
 
     #region Player Inits
-    public void SetNotifier(Action callback)
-    {
-        notifyAction = callback;
-    }
- 
-    public void DropTrack(Track track)
-    {
-        CleanCurrentState();
-            
+    public void SetNotifier(Action callback) =>
+        _playerService.DefineCallback(callback);
+
+    public async Task DropTrack(Track track)
+    {            
         CurrentTrack = track;
-        IsEmpty = false;
-
-        TotalTime = track.Duration;
-        TrackStarted?.Invoke();
-        currentMedia = new Media (_vlc, new Uri(track.Pathway.ToString()));
-        _mediaPlayer = new(currentMedia);
-
+        await _playerService.SetTrack(track);
+        //mediator tag for a toogle event
     }
        
-    public void DropPlaylist(Playlist playlist, int index=0)
-    {
-        CleanCurrentState();
-        
+    public async Task DropPlaylist(Playlist playlist, int index=0)
+    { 
         PlaylistPoint = index;
         var startTrack = playlist[index];
-        TotalTime = startTrack.Duration;
         CurrentTrack = startTrack;
         CurrentPlaylist = playlist;
-
-        currentMedia = new Media (_vlc, new Uri(startTrack.Pathway.ToString()));
-        _mediaPlayer = new(currentMedia);
-
-        IsEmpty = false;
+        IsSwipe = true;
         IsPlaylist = true;
+
+        
     }
 
-    public void DropNetworkStream(ReadOnlyMemory<char> uri)
+    public async Task DropNetworkStream(ReadOnlyMemory<char> uri)
     {}
 
-    private void CleanCurrentState()
-    {
-        ToggleState = false;
-        notifyAction?.Invoke();
-        _mediaPlayer.Stop();
-
-        if (currentMedia != null)
-        {
-            currentMedia.Dispose();
-            currentMedia = null;
-        }
-            
-        CurrentTrack = null;
-        PlaylistPoint = 0; 
-    }
-
+    
     public async Task Toggle()
     {
-        if (!_mediaPlayer.IsPlaying)
-        {
-            ToggleState = true;
-            notifyAction?.Invoke();
-            _mediaPlayer.Play();
-
-            while(_mediaPlayer.Position < 0.99f);
-
-            ToggleState = false;
-            notifyAction?.Invoke();
-            _mediaPlayer.Stop();
-        }
-        else
-        {
-            ToggleState = false;
-            notifyAction?.Invoke();
-            _mediaPlayer.Pause();
-        }
+        _playerService.Toggle().Start();
     }
 
     public async Task Stop()
     {
-        await Task.Run(() => 
-        {
-            ToggleState = false;
-            notifyAction?.Invoke();
-            _mediaPlayer.Stop();
-        });
+        IsSwipe = false;
+        IsPlaylist = false;
+        await _playerService.Stop();
     }
 
     public async Task Repeat()
@@ -163,40 +106,34 @@ public class VlcPlayer : IPlayer
     public async Task Shuffle()
     {}
 
-    public async Task ChangeVolume(float volume)
-    {}
-
 
     public async void DropPrevious()
     {
-        await Task.Run (() => {
-            if ((IsSwipe) && (!IsEmpty))
-                DropMediaInstance(false);
-        });
+        if (IsPlaylist)
+            await SetNewMediaInstance(false);
     }
 
     public async void DropNext()
     {
-        await Task.Run(() => {
-            if((IsSwipe) && (!IsEmpty))
-                DropMediaInstance(true);
-        });
+        if(IsPlaylist)
+            await SetNewMediaInstance(true); 
     }
 
-    private void SetNewMediaInstance(bool direct)
+    private async Task SetNewMediaInstance(bool direct)
     {
-        CleanCurrentState(); 
-        DragPointer(direct);
+        if(CurrentPlaylist is not null)
+        {
+            DragPointer(direct);
+   
+            if(IsSwipe)
+            {
+                var newTrack = (Track)CurrentPlaylist?[PlaylistPoint];
+                CurrentTrack = newTrack;
+                await _playerService.SetTrack(newTrack);
 
-        var newTrack = CurrentPlaylist?[PlaylistPoint];
-        TotalTime = (TimeSpan)newTrack?.Duration;
-        CurrentTrack = newTrack;
-
-        currentMedia = new Media (_vlc, new Uri(CurrentTrack?.Pathway.ToString()));
-        _mediaPlayer = new(currentMedia);
-
-        IsEmpty = false;
-        IsPlaylist = true;
+                //mediator for toogle event
+            }
+        }
     }
 
     private void DragPointer(bool direction)
@@ -204,7 +141,12 @@ public class VlcPlayer : IPlayer
         if (direction)
         {
             if (PlaylistPoint == CurrentPlaylist?.Tracky.Count - 1)
-                PlaylistPoint = 0;
+            {
+                if (!IsPlaylistLoop)
+                {
+                    IsSwipe = false;
+                }
+            }
             else
                 PlaylistPoint++;
         }

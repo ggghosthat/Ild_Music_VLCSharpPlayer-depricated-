@@ -2,6 +2,7 @@ using ShareInstances;
 using ShareInstances.Instances;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using LibVLCSharp;
 using LibVLCSharp.Shared;
@@ -9,8 +10,8 @@ namespace IldMusic.VlcPlayer;
 internal class VlcPlayerService
 {
     #region VLCSharp Instances
-    private static readonly LibVLC _vlc = new LibVLC(); 
-    private static MediaPlayer _mediaPlayer = new(_vlc);
+    private static readonly LibVLC _vlc = new(); 
+    private static MediaPlayer _mediaPlayer;
     #endregion
 
     public Track? CurrentTrack {get; private set;} = null;
@@ -52,16 +53,26 @@ internal class VlcPlayerService
     private Action notifyAction;
     #endregion 
 
-    public VlcPlayerService(){}
+    #region Events
+    public event Action TrackFinished;
+    #endregion
+
+    public VlcPlayerService()
+    {
+        _mediaPlayer = new (_vlc);
+    }
+
+    public void DefineCallback(Action callback) =>
+        notifyAction = callback;
 
     public async Task SetTrack(Track track)
     {
-        //clean up mediaPlayer's state
+       Clean();
 
        CurrentTrack = track;
        currentMedia = new Media(_vlc, new Uri(track.Pathway.ToString()));
        TotalTime = track.Duration;
-       _mediaPlayer.Media = currentMedia;
+       _mediaPlayer.Media = currentMedia; 
     }
 
     public async Task Toggle()
@@ -69,18 +80,22 @@ internal class VlcPlayerService
         if (!_mediaPlayer.IsPlaying)
         {
             ToggleState = true;
+            IsEmpty = false;
             notifyAction?.Invoke();
             _mediaPlayer.Play();
 
             while(_mediaPlayer.Position < 0.99f);
-
+            
+            TrackFinished?.Invoke();
             ToggleState = false;
+            IsEmpty = true;
             notifyAction?.Invoke();
             _mediaPlayer.Stop();
         }
         else
         {
             ToggleState = false;
+            IsEmpty = false;
             notifyAction?.Invoke();
             _mediaPlayer.Pause();
         }
@@ -91,6 +106,7 @@ internal class VlcPlayerService
         await Task.Run(() => 
         {
             ToggleState = false;
+            IsEmpty = true;
             notifyAction?.Invoke();
             _mediaPlayer.Stop();
         });
@@ -99,5 +115,24 @@ internal class VlcPlayerService
     public async void Seek(TimeSpan timePoint)
     {
         _mediaPlayer.SeekTo(timePoint);
+    }
+
+    private void Clean()
+    {
+        if(ToggleState == true)
+        {
+            ToggleState = false;
+            notifyAction?.Invoke();
+        }
+
+        _mediaPlayer.Stop();
+
+        if(currentMedia != null)
+        {
+            currentMedia.Dispose();
+            currentMedia = null;
+        }
+
+        IsEmpty = true;
     }
 }
