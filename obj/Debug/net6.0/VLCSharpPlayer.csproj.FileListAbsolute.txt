@@ -26,3 +26,16 @@
 /home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.dll
 /home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/refint/VLCSharpPlayer.dll
 /home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.pdb
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/VLCSharpPlayer.deps.json
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/VLCSharpPlayer.runtimeconfig.json
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/VLCSharpPlayer.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/VLCSharpPlayer.pdb
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/AutoMapper.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/LibVLCSharp.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/TagLibSharp.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/ShareInstances.dll
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/bin/Debug/net6.0/ShareInstances.pdb
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.csproj.CopyComplete
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/VLCSharpPlayer.genruntimeconfig.cache
+/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/obj/Debug/net6.0/ref/VLCSharpPlayer.dll

@@ -19,7 +19,7 @@ public class VlcPlayer : IPlayer
     public bool IsEmpty => _playerService.IsEmpty;
     public bool ToggleState => _playerService.ToggleState;
     public int PlaylistPoint {get; private set;} = 0;
-
+    public int PlaylistCount {get; private set;} = 0;
 
     public bool IsSwipe {get; private set;} = false;
     public bool IsPlaylistLoop {get; set;} = false;
@@ -72,9 +72,11 @@ public class VlcPlayer : IPlayer
         var startTrack = playlist[index];
         CurrentTrack = startTrack;
         CurrentPlaylist = playlist;
+        _playerService.TrackFinished += async () => await SetNewMediaInstance(true);
         IsSwipe = true;
         IsPlaylist = true;
-
+        PlaylistCount = playlist.Count;
+        await _playerService.SetTrack(startTrack);
         
     }
 
@@ -82,41 +84,43 @@ public class VlcPlayer : IPlayer
     {}
 
     
-    public async Task Toggle()
+    public void Toggle()
     {
-        _playerService.Toggle().Start();
+        Task.Run(async () => await _playerService.Toggle());
     }
 
-    public async Task Stop()
+    public void Stop()
     {
         IsSwipe = false;
         IsPlaylist = false;
-        await _playerService.Stop();
+        Task.Run(async () => await _playerService.Stop());
     }
 
     public async Task Repeat()
-    {}
-
-    public async Task SkipPrev()
-    {}
-
-    public async Task SkipNext()
     {}
 
     public async Task Shuffle()
     {}
 
 
-    public async void DropPrevious()
+    public void SkipPrev()
     {
         if (IsPlaylist)
-            await SetNewMediaInstance(false);
+            Task.Run(async () => 
+            {
+                await SetNewMediaInstance(false);
+                await _playerService.Toggle();
+            });
     }
 
-    public async void DropNext()
+    public void SkipNext()
     {
         if(IsPlaylist)
-            await SetNewMediaInstance(true); 
+            Task.Run(async () =>
+            {
+                await SetNewMediaInstance(true);
+                await _playerService.Toggle();
+            });
     }
 
     private async Task SetNewMediaInstance(bool direct)
@@ -140,12 +144,10 @@ public class VlcPlayer : IPlayer
     {
         if (direction)
         {
-            if (PlaylistPoint == CurrentPlaylist?.Tracky.Count - 1)
+            if (PlaylistPoint == PlaylistCount - 1)
             {
-                if (!IsPlaylistLoop)
-                {
-                    IsSwipe = false;
-                }
+                if (!IsPlaylistLoop) return;
+                else PlaylistPoint = 0;
             }
             else
                 PlaylistPoint++;
@@ -153,9 +155,14 @@ public class VlcPlayer : IPlayer
         else 
         {
             if (PlaylistPoint == 0)
-                PlaylistPoint = (int)(CurrentPlaylist?.Tracky.Count - 1);
+            {
+                if (!IsPlaylistLoop) return;
+                else PlaylistPoint = PlaylistCount - 1;
+            }
             else
+            {
                 PlaylistPoint--;
+            }
         }
     }
     #endregion

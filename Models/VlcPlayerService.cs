@@ -55,11 +55,13 @@ internal class VlcPlayerService
 
     #region Events
     public event Action TrackFinished;
+    public event Func<Task> TrackFinishedAsync;
     #endregion
 
     public VlcPlayerService()
     {
         _mediaPlayer = new (_vlc);
+        _mediaPlayer.Volume = 40;
     }
 
     public void DefineCallback(Action callback) =>
@@ -79,18 +81,19 @@ internal class VlcPlayerService
     {
         if (!_mediaPlayer.IsPlaying)
         {
+
+            _mediaPlayer.Play();
             ToggleState = true;
             IsEmpty = false;
             notifyAction?.Invoke();
-            _mediaPlayer.Play();
-
+            
             while(_mediaPlayer.Position < 0.99f);
             
+            _mediaPlayer.Stop();
             TrackFinished?.Invoke();
             ToggleState = false;
             IsEmpty = true;
             notifyAction?.Invoke();
-            _mediaPlayer.Stop();
         }
         else
         {
