@@ -1,13 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "vBWtWHnTzkAXEBMTRtvgJvF+joer7tQDK//imohgeHfaeVoXMFNBs0JURjaWi4HX1o15eHclM3KdKvlN5q5k6A==",
+  "dgSpecHash": "up+CSPGmh70b3TpKqzo2MHCMdoSUvwO5GkGtGU+ptXdbxsunpBYJlkV8Lnm8A0g9kxsgurWHCQUT/l+9mF++SQ==",
   "success": true,
   "projectFilePath": "/home/jake/repos/Ild_Music_repos/Ild-Music.VLCSharpPlayer/VLCSharpPlayer.csproj",
   "expectedPackageFiles": [
+    "/home/jake/.nuget/packages/autofac/7.1.0/autofac.7.1.0.nupkg.sha512",
     "/home/jake/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/home/jake/.nuget/packages/libvlcsharp/3.7.0/libvlcsharp.3.7.0.nupkg.sha512",
+    "/home/jake/.nuget/packages/mediatr/12.1.1/mediatr.12.1.1.nupkg.sha512",
+    "/home/jake/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/jake/.nuget/packages/mediatr.extensions.autofac.dependencyinjection/11.2.0/mediatr.extensions.autofac.dependencyinjection.11.2.0.nupkg.sha512",
     "/home/jake/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
-    "/home/jake/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/jake/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/jake/.nuget/packages/system.diagnostics.diagnosticsource/4.7.1/system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "/home/jake/.nuget/packages/taglibsharp/2.2.0/taglibsharp.2.2.0.nupkg.sha512"
   ],
   "logs": []

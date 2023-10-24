@@ -1,17 +1,19 @@
 using ShareInstances;
 using ShareInstances.Instances;
 
-using LibVLCSharp.Shared;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediatR;
 namespace IldMusic.VlcPlayer;
 public class VlcPlayer : IPlayer
 {
     private static readonly VlcPlayerService _playerService = new();
+
+    private IMediator _mediator = default;
+
     public Guid PlayerId => Guid.NewGuid();
     public string PlayerName => "Vlc Player";
-
+    
     public Track? CurrentTrack {get; private set;} = null;
     public Playlist? CurrentPlaylist { get; private set;} = null;
 
@@ -56,8 +58,14 @@ public class VlcPlayer : IPlayer
 
 
     #region Player Inits
-    public void SetNotifier(Action callback) =>
-        _playerService.DefineCallback(callback);
+    public void ConnectMediator(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    //NOTE: this method should deprecated, because according a new contract 
+    //MediatR CQRS package using instead of callback method resolution
+    public void SetNotifier(Action callback) {}
 
     public async Task DropTrack(Track track)
     {            
